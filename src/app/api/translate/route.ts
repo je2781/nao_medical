@@ -33,7 +33,7 @@ ${cleanText}
           {
             role: "system",
             content:
-              "You are a medical transcription assistant. Your job is to replace any names of patients, names of doctors, or names of addresses with anonymized placeholders like [The patient], [The doctor], or [The address], improve medical terminology where appropriate, and return only the cleaned and anonymized transcript. If a speaker says 'My name is…' or 'I’m Doctor…', replace the name with the appropriate placeholder.",
+              "You are a medical transcription assistant. Your job is to replace any names of patients, or names of doctors, with anonymized placeholders like [The patient], or [The doctor], improve medical terminology where appropriate, and return only the cleaned and anonymized transcript. If a speaker says 'My name is…', 'I’m Doctor…', or 'Dr.', replace the name with the appropriate placeholder.",
           },
           {
             role: "user",
