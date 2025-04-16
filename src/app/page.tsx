@@ -20,8 +20,6 @@ export default function TranslationApp() {
   const [translationError, setTranslationError] = useState("");
   const [transcriptionError, setTranscriptionError] = useState("");
 
-  let timer: NodeJS.Timeout | null;
-
   const {
     transcript,
     resetTranscript,
@@ -109,7 +107,7 @@ export default function TranslationApp() {
   useEffect(() => {
     if (!transcript) return;
 
-    timer = setTimeout(async () => {
+    let timer = setTimeout(async () => {
       try {
         const response = await fetch("/api/translate", {
           method: "POST",
