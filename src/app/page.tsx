@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -19,6 +19,8 @@ export default function TranslationApp() {
   const [targetLang, setTargetLang] = useState("zh-TW");
   const [translationError, setTranslationError] = useState("");
   const [transcriptionError, setTranscriptionError] = useState("");
+
+  let timer = useRef<NodeJS.Timeout | null>(null);
 
   const {
     transcript,
@@ -107,7 +109,7 @@ export default function TranslationApp() {
   useEffect(() => {
     if (!transcript) return;
 
-    let timer = setTimeout(async () => {
+    timer.current = setTimeout(async () => {
       try {
         const response = await fetch("/api/translate", {
           method: "POST",
@@ -134,8 +136,8 @@ export default function TranslationApp() {
     }, 1000);
 
     return () => {
-      if (timer) {
-        clearTimeout(timer);
+      if (timer.current) {
+        clearTimeout(timer.current);
       }
     };
   }, [transcript, sourceLang, targetLang]);
