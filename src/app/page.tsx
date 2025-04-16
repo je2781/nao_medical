@@ -24,7 +24,6 @@ export default function TranslationApp() {
 
   const {
     transcript,
-    listening,
     resetTranscript,
     browserSupportsSpeechRecognition,
     isMicrophoneAvailable,

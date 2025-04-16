@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sanitizeInput } from "@/utils/sanitize";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   const { text, targetLang, sourceLang } = await req.json();
 
   const cleanText = sanitizeInput(text);
