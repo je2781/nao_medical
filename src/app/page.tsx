@@ -119,17 +119,17 @@ export default function TranslationApp() {
 
         if (!response.ok) {
           const err = await response.json();
-          setTranslationError(err.error || "Translation service failed");
-          setTranslatedText("");
-          return;
+          throw new Error(err.error || "Translation service failed");
+      
         }
 
         const data = await response.json();
         setTranslatedText(data.translation);
         setTranslationError("");
       } catch (err) {
+        const e = err as Error;
         setTranslationError(
-          "An error occurred while translating. Please try again."
+          e.message || 'An error occurred while translating. Please try again.'
         );
         setTranslatedText("");
       }

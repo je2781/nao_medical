@@ -14,6 +14,8 @@ I started with the main page to design the translation app. The web speech api w
 
 I finally moved onto the api folder to design the handler to translate the transcript. The OpenAI model was designed with redaction of patient names, doctor names, and private details for HIPAA privacy. I also purified the dom as a security measure for XSS attacks.
 
+__User guide is on the right-top corner of the page__
+
 ## Deployment
 
 
