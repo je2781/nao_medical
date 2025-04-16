@@ -20,7 +20,7 @@ export default function TranslationApp() {
   const [translationError, setTranslationError] = useState("");
   const [transcriptionError, setTranscriptionError] = useState("");
 
-  let timer = useRef<NodeJS.Timeout | null>(null);
+  const timer = useRef<NodeJS.Timeout | null>(null);
 
   const {
     transcript,
