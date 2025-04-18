@@ -10,8 +10,6 @@ import PrivacyNotice from "@/components/privacy/PrivacyNotice";
 import { GuideModal } from "@/components/layout/Modal";
 
 export default function TranslationApp() {
-  let timerId: NodeJS.Timeout | null = null;
-
   const [translatedText, setTranslatedText] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [isGuideModalOpen, setIsGuideModalOpen] = useState(false);
@@ -74,11 +72,11 @@ export default function TranslationApp() {
   //cleaning up asynchronous callback timers
   useEffect(() => {
     return () => {
-      if (timerId) {
-        clearTimeout(timerId);
+      if (timer.current) {
+        clearTimeout(timer.current);
       }
     };
-  }, [timerId]);
+  }, [timer.current]);
 
   useEffect(() => {
     if (!browserSupportsSpeechRecognition || !isMicrophoneAvailable) {
@@ -163,7 +161,7 @@ export default function TranslationApp() {
       modal.classList.remove(`animate-[slideDown_0.3s_ease-out_forwards]`);
       modal.classList.add(`animate-[slideUp_0.3s_ease-out_forwards]`);
 
-      timerId = setTimeout(() => {
+      timer.current = setTimeout(() => {
         setModalState(false);
       }, 300);
     } else {
